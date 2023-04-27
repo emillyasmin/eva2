@@ -1,0 +1,56 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<h2 class="comments-count">Atualizar Item</h2>
+
+<div class="col-lg-8">
+
+    <div class="reply-form">
+
+                <form action="{{ url_for('atualizar_item', codigo=item[0]) }}" method="POST">
+                  <div class="row">
+                    <div class="col form-group">
+                        <label for="disponibilidade">Disponibilidade</label>
+                        <select  name="disponibilidade"  class="form-control" required>
+                            <option value="disponivel" {% if item[1] == "disponivel" %}{{ "selected" }}{% endif %}>Disponível</option>
+                            <option value="indisponivel" {% if item[1] == "indisponivel" %}{{ "selected" }}{% endif %}>Indisponível</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="row">
+                      <div class="col form-group">
+                        <label for="observacao">Observacão</label>
+                        <input name="observacao" type="text" value="{{  item[2]  }}" class="form-control" placeholder="Observação*" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col form-group">
+                        <label for="material">Material</label>
+                        <select name="material" required class="form-control">
+                          {% if materiais %}
+                            {% for u in materiais %}
+                              <option value="{{ u[0] }}" {% if item[4] == u[0] %}{{ "selected" }}{% endif %} selected>{{ u[0] }} - {{  u[1] }}</option>
+                            {% endfor %}
+                          {% endif %}
+                        </select>
+                      </div>
+                  </div>
+                    <div class="row">
+                      <div class="col form-group">
+                        <label for="localizacao">Localizacao</label>
+                        <input name="localizacao" type="text" value="{{  item[3]  }}" class="form-control" placeholder="Localizacao*" >
+                      </div>
+                    </div>
+
+
+
+                  <button type="submit" class="btn btn-primary">Atualizar</button>
+
+                </form>
+
+
+              </div>
+
+{% endblock conteudo %}

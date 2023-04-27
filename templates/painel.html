@@ -1,0 +1,147 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+  </div>
+    </div>
+          </div>
+
+<!-- ======= Services Section ======= -->
+          <section id="services" class="services section-bg">
+            <div class="container" data-aos="fade-up">
+
+              <div class="section-header">
+                <h2>O que você quer fazer?</h2>
+              </div>
+
+
+              {% if session['logado']['tipo'] == 1 %}
+
+                <div class="row gy-4">
+
+                  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-item  position-relative">
+                      <div class="icon">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                      </div>
+                      <h3>Cadastrar Material</h3>
+                      <p>Cadastre um material novo que chegou ao laboratório (ex: resistores, arduínos, multímetros).</p>
+                      <a href="/cadastrar_material" class="readmore stretched-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                  </div><!-- End Service Item -->
+
+                  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-item position-relative">
+                      <div class="icon">
+                        <i class="fa-solid fa-arrow-up-from-ground-water"></i>
+                      </div>
+                      <h3>Cadastrar Item</h3>
+                      <p>Cadastre a quantidade de itens daquele material (ex: 50 resistores, 3 arduínos, 1 multímetro).</p>
+                      <a href="/cadastrar_item" class="readmore stretched-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                  </div><!-- End Service Item -->
+
+                  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-item position-relative">
+                      <div class="icon">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                      </div>
+                      <h3>Registrar Empréstimo</h3>
+                      <p>Se for pegar algum item emprestado, não esqueça de registrar seu empréstimo aqui!</p>
+                      <a href="/cadastrar_emprestimo" class="readmore stretched-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                  </div><!-- End Service Item -->
+
+
+
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                  <div class="service-item position-relative">
+                    <div class="icon">
+                      <i class="fa-solid fa-trowel-bricks"></i>
+                    </div>
+                    <h3>Listar Material</h3>
+                    <p>Veja os materiais que já estão cadastrados no laboratório.</p>
+                    <a href="/listar_material" class="readmore stretched-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                  <div class="service-item position-relative">
+                    <div class="icon">
+                      <i class="fa-solid fa-helmet-safety"></i>
+                    </div>
+                    <h3>Listar Item</h3>
+                    <p>Veja quantos itens de cada material estão disponíveis no estoque.</p>
+                    <a href="/listar_item" class="readmore stretched-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                  <div class="service-item position-relative">
+                    <div class="icon">
+                      <i class="fa-solid fa-arrow-up-from-ground-water"></i>
+                    </div>
+                    <h3>Listar Empréstimo</h3>
+                    <p>Veja os empréstimos que foram feitos pelos alunos.</p>
+                    <a href="/listar_emprestimos" class="readmore stretched-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div><!-- End Service Item -->
+
+
+              </div>
+
+            </div>
+
+
+
+
+            {% else %}
+
+            <div class="row gy-4">
+
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                  <div class="service-item position-relative">
+                    <div class="icon">
+                      <i class="fa-solid fa-trowel-bricks"></i>
+                    </div>
+                    <h3>Listar Material</h3>
+                    <p>Veja os materiais que já estão cadastrados no laboratório.</p>
+                    <a href="/listar_material" class="readmore stretched-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                  <div class="service-item position-relative">
+                    <div class="icon">
+                      <i class="fa-solid fa-helmet-safety"></i>
+                    </div>
+                    <h3>Listar Item</h3>
+                    <p>Veja quantos itens de cada material estão disponíveis no estoque.</p>
+                    <a href="/listar_item" class="readmore stretched-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                  <div class="service-item position-relative">
+                    <div class="icon">
+                      <i class="fa-solid fa-arrow-up-from-ground-water"></i>
+                    </div>
+                    <h3>Listar Empréstimo</h3>
+                    <p>Veja os empréstimos que foram feitos pelos alunos.</p>
+                    <a href="/listar_emprestimos" class="readmore stretched-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div><!-- End Service Item -->
+
+
+              </div>
+
+            </div>
+
+
+
+            {% endif %}
+
+          </section><!-- End Services Section -->
+
+{% endblock conteudo %}

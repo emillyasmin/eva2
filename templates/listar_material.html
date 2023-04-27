@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<h2 class="comments-count">Lista de Materiais</h2>
+
+<div class="reply-form">
+
+    <table class="table">
+      <thead>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Opções</th>
+      </thead>
+      <tbody>
+      {% if materiais %}
+        {% for p in materiais %}
+          <tr>
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td><a href="{{ url_for('excluir_material', codigo=p[0]) }}">Excluir</a> | <a href="{{ url_for('atualizar_material', codigo=p[0]) }}"> Editar</a></td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <p>Nenhum item foi encontrado</p>
+      {% endif %}
+      </tbody>
+    </table>
+
+  </div>
+{% endblock conteudo %}

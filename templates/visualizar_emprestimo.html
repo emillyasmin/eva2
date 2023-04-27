@@ -1,0 +1,105 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+  </div>
+</div>
+
+
+   <!-- ======= Projet Details Section ======= -->
+    <section id="project-details" class="project-details">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-between gy-4 mt-4">
+
+
+
+              <div class="col-lg-8">
+                <div class="portfolio-description">
+                {% if emprestimo %}
+                      <h2>Empréstimo {{ emprestimo[0] }}</h2>
+
+                    <div class="reply-form">
+
+                    <table class="table">
+                      <tbody>
+                          <tr>
+                            <td>Código</td>
+                            <td>{{ emprestimo[0] }}</td>
+                          </tr>
+                          <tr>
+                            <td>Tipo</td>
+                            <td>{{ emprestimo[1] }}</td>
+                          </tr>
+                          <tr>
+                            <td>Usuario</td>
+                            <td>{{ emprestimo[4] }}</td>
+                          </tr>
+
+                {% else %}
+                     <p>Nenhum item foi encontrado</p>
+                {% endif %}
+                      </tbody>
+                    </table>
+                    </div>
+
+
+              <div class="testimonial-item">
+                <div class="reply-form">
+                  <p>Itens</p>
+                  <table class="table">
+                    <thead>
+                      <th>Código</th>
+                      <th>Material</th>
+                      <th>Disponibilidade</th>
+                      <th>Observação</th>
+                      <th>Localização</th>
+
+                    </thead>
+                    <tbody>
+                    {% if itens %}
+                      {% for p in itens %}
+                        <tr>
+                          <td>{{ p[0] }}</td>
+                          <td>{{ p[7] }}</td>
+                          <td>{{ p[1] }}</td>
+                          <td>{{ p[2] }}</td>
+                          <td>{{ p[3] }}</td>
+                        </tr>
+
+                      {% endfor %}
+                    {% else %}
+                      <p>Nenhum item foi encontrado</p>
+                    {% endif %}
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="portfolio-info">
+              {% if emprestimo %}
+                  <h3>Opções</h3>
+                  <ul>
+                    <li><strong>Data do Empréstimo</strong> <span> {{ emprestimo[2] }}</span></li>
+                    <li><strong>Data de Devolução</strong> <span>{{ emprestimo[3] }}</span></li>
+                    <li><a href="{{ url_for('adicionar_item', codigo=emprestimo[0] ) }}" class="btn-visit align-self-start">Adicionar Item</a></li>
+                    <li><a href="{{ url_for('devolver_itens', codigo=emprestimo[0]) }}" class="btn-visit align-self-start">Devolver Itens</a></li>
+
+                  </ul>
+              {% else %}
+                  <p>Nenhum item foi encontrado</p>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Projet Details Section -->
+
+
+{% endblock conteudo %}

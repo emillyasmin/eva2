@@ -1,0 +1,52 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+
+<h2 class="comments-count">Lista de Itens</h2>
+
+
+             <div class="sidebar">
+
+              <div class="sidebar-item search-form">
+                <h3 class="sidebar-title">Buscar Itens por Nome</h3>
+                <form action=" " method="POST" class="mt-3">
+                  <input name="nome" type="text" value="{{ request.form.listar_item }}">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
+
+
+
+<div class="reply-form">
+
+    <table class="table">
+      <thead>
+        <th>Código</th>
+        <th>Material</th>
+        <th>Disponibilidade</th>
+        <th>Observação</th>
+        <th>Localização</th>
+        <th>Opções</th>
+
+      </thead>
+      <tbody>
+      {% if itens %}
+        {% for p in itens %}
+          <tr>
+            <td>{{ p[0] }}</td>
+            <td>{{ p[7] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>{{ p[3] }}</td>
+            <td><a href="{{ url_for('excluir_item', codigo=p[0]) }}">Excluir</a> | <a href="{{ url_for('atualizar_item', codigo=p[0]) }}">Editar</a></td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <p>Nenhum item foi encontrado</p>
+      {% endif %}
+      </tbody>
+    </table>
+
+  </div>
+
+{% endblock conteudo %}

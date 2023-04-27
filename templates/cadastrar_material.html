@@ -1,0 +1,37 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<h2 class="comments-count">Cadastro de Material</h2>
+
+    <div class="col-lg-8">
+        <div class="reply-form">
+
+
+
+                <form action="{{ url_for('cadastrar_material') }}" method="POST">
+                  <div class="row">
+                    <div class="col form-group">
+                        <label for="nome">Nome</label>
+                        <input name="nome" type="text" class="form-control" placeholder="Nome*" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col form-group">
+                        <label for="tipo">Tipo</label>
+                        <select name="tipo" required class="form-control">
+                          <option value="material">Material</option>
+                          <option value="equipamento">Equipamento</option>
+                        </select>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+                </form>
+
+
+
+        </div>
+    </div>
+
+
+{% endblock conteudo %}

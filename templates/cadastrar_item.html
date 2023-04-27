@@ -1,0 +1,54 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<h2 class="comments-count">Cadastro de Itens</h2>
+
+<div class="col-lg-8">
+  <div class="reply-form">
+
+                  <form action="{{ url_for('cadastrar_item') }}" method="POST">
+                    <div class="row">
+                      <div class="col form-group">
+                        <label for="disponibilidade">Disponibilidade</label>
+                        <select name="disponibilidade" required class="form-control">
+                          <option value="disponível">Disponível</option>
+                          <option value="indisponível">Indisponível</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col form-group">
+                        <label for="material">Material</label>
+                        <select name="material" required class="form-control">
+                          {% if materiais %}
+                            {% for u in materiais %}
+                              <option value="{{ u[0] }}">{{ u[0] }} - {{  u[1] }}</option>
+                            {% endfor %}
+                          {% endif %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col form-group">
+                        <label for="observacao">Observacao</label>
+                        <input name="observacao" type="text" class="form-control" placeholder="Observação*" >
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col form-group">
+                        <label for="localizacao">Localizacao</label>
+                        <input name="localizacao" type="text" class="form-control" placeholder="Localizacao*" >
+                      </div>
+                    </div>
+
+
+
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+                  </form>
+
+
+                </div>
+              </div>
+
+{% endblock conteudo %}

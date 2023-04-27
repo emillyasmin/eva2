@@ -1,0 +1,35 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<h2 class="comments-count">Cadastro</h2>
+
+<div class="col-lg-8">
+  <div class="reply-form">
+
+                  <form action="{{ url_for('cadastrar') }}" method="POST">
+                    <div class="row">
+                      <div class="col-md-6 form-group">
+                        <input name="matricula" type="text" class="form-control" placeholder="Matricula*" required>
+                      </div>
+                      <div class="col-md-6 form-group">
+                        <input name="nome" type="text" class="form-control" placeholder="Nome*" required>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col form-group">
+                        <input name="email" type="email" class="form-control" placeholder="E-mail*" required>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col form-group">
+                        <input name="senha" type="password" class="form-control" placeholder="Senha*" required>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+                  </form>
+
+
+              </div>
+            </div>
+
+{% endblock conteudo %}
