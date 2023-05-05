@@ -3,6 +3,18 @@
 
 <h2 class="comments-count">Lista de Materiais</h2>
 
+             <div class="sidebar">
+
+              <div class="sidebar-item search-form">
+                <h3 class="sidebar-title">Buscar Material por Nome</h3>
+                <form action=" " method="POST" class="mt-3">
+                  <input name="nome" type="text" value="{{ request.form.listar_material }}">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
+
+
+
 <div class="reply-form">
 
     <table class="table">

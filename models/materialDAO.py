@@ -18,7 +18,12 @@ class MaterialDAO():
     def listar(self, codigo=None):
         try:
             cursor = self.con.cursor()
-            if codigo != None:
+            if codigo != None and codigo == str(codigo):
+                sql = "SELECT * FROM Material WHERE nome=%s"
+                cursor.execute(sql, (codigo,))
+                material = cursor.fetchall()
+                return material
+            elif codigo != None:
                 sql = "SELECT * FROM Material WHERE codigo=%s"
                 cursor.execute(sql, (codigo,))
                 material = cursor.fetchone()

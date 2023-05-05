@@ -1,6 +1,30 @@
 {% extends "template.html" %}
 {% block conteudo %}
 <h4 class="comments-count">Registro de Empréstimos</h4>
+
+
+             <div class="sidebar">
+
+<!--              <div class="sidebar-item search-form">-->
+                <h3 class="sidebar-title">Buscar Empréstimo por Data</h3>
+                <form action=" " method="POST" class="mt-3">
+                  <input name="data" type="date" value="{{ request.form.listar_emprestimo }}">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+<!--              </div>&lt;!&ndash; End sidebar search formn&ndash;&gt;-->
+
+
+<!--              <div class="sidebar-item search-form">-->
+<!--                <h3 class="sidebar-title">Buscar Emprestimo por Usuário</h3>-->
+<!--                <form action=" " method="POST" class="mt-3">-->
+<!--                  <input name="nome" type="text" value="{{ request.form.listar_emprestimo }}">-->
+<!--                  <button type="submit"><i class="bi bi-search"></i></button>-->
+<!--                </form>-->
+<!--              </div>&lt;!&ndash; End sidebar search formn&ndash;&gt;-->
+
+
+
+
   <div class="reply-form">
 
     <table class="table">

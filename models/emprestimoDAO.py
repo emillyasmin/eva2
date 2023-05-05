@@ -46,7 +46,17 @@ class EmprestimoDAO:
     def listar(self, codigo=None):
         try:
             cursor = self.con.cursor()
-            if codigo != None:
+            if codigo != None and codigo == str(codigo):
+                data = codigo
+                sql ="SELECT e.codigo, e.tipo, e.dt_emp, e.dt_devolucao, u.nome, u.matricula" \
+                     " FROM Emprestimo as e, Usuario as u" \
+                     " WHERE e.Usuario_matricula = u.matricula AND" \
+                     "      e.dt_emp = %s"
+                cursor.execute(sql, (data, ))
+                emprestimos = cursor.fetchall()
+                return emprestimos
+
+            elif codigo != None:
                 sql ="SELECT e.codigo, e.tipo, e.dt_emp, e.dt_devolucao, u.nome, u.matricula" \
                      " FROM Emprestimo as e, Usuario as u" \
                      " WHERE e.Usuario_matricula = u.matricula AND" \

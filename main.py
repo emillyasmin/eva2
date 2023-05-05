@@ -140,9 +140,16 @@ def cadastrar_material():
 
 @app.route('/listar_material', methods=['GET', 'POST'])
 def listar_material():
- dao = MaterialDAO(get_db())
- materiais_db = dao.listar()
- return render_template("listar_material.html", materiais=materiais_db)
+    dao = MaterialDAO(get_db())
+    try:
+        nome = request.form['nome']
+        if nome is not None:
+            materiais_db = dao.listar(nome)
+    except:
+        materiais_db = dao.listar()
+
+    return render_template("listar_material.html", materiais=materiais_db)
+
 
 
 @app.route('/atualizar_material/<int:codigo>', methods=['GET', 'POST'])
@@ -266,7 +273,12 @@ def atualizar_item(codigo):
 @app.route('/listar_emprestimos', methods=['GET','POST'])
 def listar_emprestimos():
     dao = EmprestimoDAO(get_db())
-    emprestimos_db = dao.listar()
+    try:
+        data = request.form['data']
+        if data is not None:
+            emprestimos_db = dao.listar(data)
+    except:
+        emprestimos_db = dao.listar()
     return render_template("listar_emprestimos.html", emprestimos=emprestimos_db)
 
 
