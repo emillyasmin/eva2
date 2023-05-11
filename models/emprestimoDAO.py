@@ -4,13 +4,14 @@ class EmprestimoDAO:
 
     def inserir(self, emprestimo):
         try:
-            sql = "INSERT INTO Emprestimo(tipo, dt_emp, Usuario_matricula) " \
-                  "VALUES (%s, %s, %s)"
+            sql = "INSERT INTO Emprestimo(tipo, dt_emp, dt_devolucao, Usuario_matricula) " \
+                  "VALUES (%s, %s, %s, %s)"
 
             cursor = self.con.cursor()
             print(sql)
             cursor.execute(sql, (emprestimo.tipo,
                                  emprestimo.dt_emp,
+                                 emprestimo.dt_devolucao,
                                  emprestimo.usuario))
             print(cursor)
             self.con.commit()

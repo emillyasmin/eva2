@@ -291,8 +291,9 @@ def cadastrar_emprestimo():
         tipo = request.form['tipo']
         dt_emp = request.form['dt_emp']
         usuario = request.form['usuario']
+        dt_devolucao = request.form['dt_devolucao']
 
-        emprestimo = Emprestimo(tipo, dt_emp, usuario)
+        emprestimo = Emprestimo(tipo, dt_emp, usuario, dt_devolucao)
 
         print(Emprestimo(tipo, dt_emp, usuario))
 
