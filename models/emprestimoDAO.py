@@ -90,3 +90,9 @@ class EmprestimoDAO:
             return cursor.rowcount
         except:
             return 0
+
+    #
+    # def atualizar(self, codigo, data):
+    #     try:
+    #         sql = "UPDATE Emprestimo" \
+    #                 "SET dt_devolucao=%s" \

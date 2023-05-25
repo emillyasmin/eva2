@@ -1,0 +1,50 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<h4 class="comments-count">Registro de Empréstimo</h4>
+
+    <div class="col-lg-8">
+        <div class="reply-form">
+
+            <form action="{{ url_for('renovar_emprestimo', codigo=emprestimo[0]) }}" method="POST">
+                <div class="row">
+                    <div class="col form-group">
+                      <label for="tipo">Tipo</label>
+                      <select name="tipo"  class="form-control" required>
+                          <option value="devolutivo">Devolutivo</option>
+                          <option value="permanente">Permanente</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col form-group">
+                      <label for="dt_emp">Data</label>
+                      <input name="dt_emp" type="date" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col form-group">
+                      <label for="dt_devolucao">Data para Devolução</label>
+                      <input name="dt_devolucao" type="date" value="{{  emprestimo[3]  }}" class="form-control" >
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col form-group">
+                      <label for="usuario">Usuário</label>
+                      <select name="usuario" required class="form-control">
+                        {% if usuarios %}-->
+                          {% for u in usuarios %}
+                            <option value="{{ u[0] }}">{{ u[0] }} - {{  u[1] }}</option>
+                          {% endfor %}
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+
+
+                  <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock conteudo %}

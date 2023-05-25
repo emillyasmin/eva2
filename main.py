@@ -362,6 +362,22 @@ def devolver_itens(codigo):
         flash("Erro!", "danger")
     return redirect(url_for('listar_emprestimos'))
 
+@app.route('/renovar_emprestimo/<int:codigo>', methods=['GET', 'POST'])
+def renovar_emprestimo(codigo):
+    dao = EmprestimoDAO(get_db())
+    if request.method == "POST":
+        data = request.form['data']
+        print(data)
+        ret = dao.devolver(codigo, data)
+        if ret > 0:
+            flash("Itens devolvidos! Código %d" % codigo, "success")
+        else:
+            flash("Erro!", "danger")
+        emprestimo_db = dao.devolver(codigo, data)
+
+    return render_template("renovar_emprestimo.html", emprestimo=emprestimo_db)
+
+
 
 @app.route('/visualizar_emprestimo/<int:codigo>', methods=['GET', 'POST'])
 def visualizar_emprestimo(codigo):
@@ -372,6 +388,8 @@ def visualizar_emprestimo(codigo):
     itens_db = daoItem.listar_itens(codigo)
     print(itens_db)
     return render_template("visualizar_emprestimo.html", emprestimo=emprestimo_db, itens=itens_db)
+
+
 
 
 # Login/logout
