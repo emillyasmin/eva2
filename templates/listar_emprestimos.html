@@ -34,6 +34,7 @@
         <th>Data Empréstimo</th>
         <th>Data de Devolução</th>
         <th>Usuário</th>
+        <th>Status</th>
         <th>Opções</th>
       </thead>
       <tbody>
@@ -45,10 +46,12 @@
             <td>{{ s[2] }}</td>
             <td>{{ s[3] }}</td>
             <td>{{ s[4] }}</td>
+            <td>{{ s[6] }}</td>
             <td><a href="{{ url_for('excluir_emprestimo', codigo=s[0]) }}" onclick="excluirEmprestimo({{ s[0] }})">Excluir</a> |
               <a href="{{ url_for('devolver_itens', codigo=s[0]) }}">Devolver</a> |
               <a href="{{ url_for('adicionar_item', codigo=s[0] ) }}">Adicionar item</a> |
-              <a href="{{ url_for('visualizar_emprestimo', codigo=s[0] ) }}">Visualizar</a></td>
+              <a href="{{ url_for('visualizar_emprestimo', codigo=s[0] ) }}">Visualizar</a> |
+              <a href="{{ url_for('renovar_emprestimo', codigo=s[0] ) }}">Renovar</a></td>
           </tr>
         {% endfor %}
       {% else %}

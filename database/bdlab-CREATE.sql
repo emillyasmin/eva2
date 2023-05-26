@@ -36,8 +36,9 @@ CREATE TABLE IF NOT EXISTS `bdlab`.`Emprestimo` (
   `dt_emp` DATE NOT NULL,
   `dt_devolucao` DATE NULL,
   `Usuario_matricula` BIGINT NOT NULL,
+  `status` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`codigo`),
-  INDEX `fk_Emprestimo_Usuario2_idx` (`Usuario_matricula` ASC),
+  INDEX `fk_Emprestimo_Usuario2_idx` (`Usuario_matricula` ASC) ,
   CONSTRAINT `fk_Emprestimo_Usuario2`
     FOREIGN KEY (`Usuario_matricula`)
     REFERENCES `bdlab`.`Usuario` (`matricula`)
@@ -68,8 +69,8 @@ CREATE TABLE IF NOT EXISTS `bdlab`.`Item` (
   `Material_codigo` BIGINT NOT NULL,
   `Emprestimo_codigo` BIGINT NULL,
   PRIMARY KEY (`codigo`),
-  INDEX `fk_Item_Emprestimo2_idx` (`Emprestimo_codigo` ASC),
-  INDEX `fk_Item_Material2_idx` (`Material_codigo` ASC),
+  INDEX `fk_Item_Emprestimo2_idx` (`Emprestimo_codigo` ASC) ,
+  INDEX `fk_Item_Material2_idx` (`Material_codigo` ASC) ,
   CONSTRAINT `fk_Item_Emprestimo2`
     FOREIGN KEY (`Emprestimo_codigo`)
     REFERENCES `bdlab`.`Emprestimo` (`codigo`)
@@ -90,8 +91,8 @@ CREATE TABLE IF NOT EXISTS `bdlab`.`Emprestimo_has_Item` (
   `Emprestimo_codigo` BIGINT NOT NULL,
   `Item_codigo` BIGINT NOT NULL,
   PRIMARY KEY (`Emprestimo_codigo`, `Item_codigo`),
-  INDEX `fk_Emprestimo_has_Item_Item1_idx` (`Item_codigo` ASC),
-  INDEX `fk_Emprestimo_has_Item_Emprestimo1_idx` (`Emprestimo_codigo` ASC),
+  INDEX `fk_Emprestimo_has_Item_Item1_idx` (`Item_codigo` ASC) ,
+  INDEX `fk_Emprestimo_has_Item_Emprestimo1_idx` (`Emprestimo_codigo` ASC) ,
   CONSTRAINT `fk_Emprestimo_has_Item_Emprestimo1`
     FOREIGN KEY (`Emprestimo_codigo`)
     REFERENCES `bdlab`.`Emprestimo` (`codigo`)
@@ -127,8 +128,9 @@ CREATE TABLE IF NOT EXISTS `bdlab`.`Emprestimo` (
   `dt_emp` DATE NOT NULL,
   `dt_devolucao` DATE NULL,
   `Usuario_matricula` BIGINT NOT NULL,
+  `status` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`codigo`),
-  INDEX `fk_Emprestimo_Usuario2_idx` (`Usuario_matricula` ASC),
+  INDEX `fk_Emprestimo_Usuario2_idx` (`Usuario_matricula` ASC) ,
   CONSTRAINT `fk_Emprestimo_Usuario2`
     FOREIGN KEY (`Usuario_matricula`)
     REFERENCES `bdlab`.`Usuario` (`matricula`)
@@ -159,8 +161,8 @@ CREATE TABLE IF NOT EXISTS `bdlab`.`Item` (
   `Material_codigo` BIGINT NOT NULL,
   `Emprestimo_codigo` BIGINT NULL,
   PRIMARY KEY (`codigo`),
-  INDEX `fk_Item_Emprestimo2_idx` (`Emprestimo_codigo` ASC),
-  INDEX `fk_Item_Material2_idx` (`Material_codigo` ASC),
+  INDEX `fk_Item_Emprestimo2_idx` (`Emprestimo_codigo` ASC) ,
+  INDEX `fk_Item_Material2_idx` (`Material_codigo` ASC) ,
   CONSTRAINT `fk_Item_Emprestimo2`
     FOREIGN KEY (`Emprestimo_codigo`)
     REFERENCES `bdlab`.`Emprestimo` (`codigo`)

@@ -1,0 +1,26 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<h4 class="comments-count">Renovar Empréstimo</h4>
+
+    <div class="col-lg-8">
+        <div class="reply-form">
+
+            <form action="{{ url_for('renovar_emprestimo', codigo=emprestimo) }}" method="POST">
+
+
+                  <div class="row">
+                    <div class="col form-group">
+                      <label for="dt_devolucao">Data para Devolução</label>
+                      <input name="dt_devolucao" type="date"  class="form-control" >
+                    </div>
+                </div>
+
+
+
+                  <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock conteudo %}
