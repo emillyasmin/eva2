@@ -275,8 +275,12 @@ def listar_emprestimos():
     dao = EmprestimoDAO(get_db())
     try:
         data = request.form['data']
-        if data is not None:
-            emprestimos_db = dao.listar(data)
+        nome = request.form['nome']
+        params = {
+            'nome': nome,
+            'data': data
+        }
+        emprestimos_db = dao.pesquisar(params)
     except:
         emprestimos_db = dao.listar()
     return render_template("listar_emprestimos.html", emprestimos=emprestimos_db)
