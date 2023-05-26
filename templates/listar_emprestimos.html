@@ -11,6 +11,16 @@
                   <input name="data" type="date" value="{{ request.form.listar_emprestimo }}">
                   <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
+
+                <div class="sidebar">
+
+              <div class="sidebar-item search-form">
+                <h3 class="sidebar-title">Buscar Iten por emprestimo</h3>
+                <form action=" " method="POST" class="mt-3">
+                  <input name="nome" type="text" value="{{request.form.listar_emprestimos}}">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
 <!--              </div>&lt;!&ndash; End sidebar search formn&ndash;&gt;-->
 
 
