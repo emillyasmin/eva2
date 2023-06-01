@@ -4,14 +4,16 @@ class EmprestimoDAO:
 
     def inserir(self, emprestimo):
         try:
-            sql = "INSERT INTO Emprestimo(tipo, dt_emp, Usuario_matricula) " \
-                  "VALUES (%s, %s, %s)"
+            sql = "INSERT INTO Emprestimo(tipo, dt_emp, dt_devolucao, Usuario_matricula, status) " \
+                  "VALUES (%s, %s, %s, %s, %s)"
 
             cursor = self.con.cursor()
             print(sql)
             cursor.execute(sql, (emprestimo.tipo,
                                  emprestimo.dt_emp,
-                                 emprestimo.usuario))
+                                 emprestimo.dt_devolucao,
+                                 emprestimo.usuario,
+                                 emprestimo.status))
             print(cursor)
             self.con.commit()
             codigo = cursor.lastrowid
@@ -47,7 +49,7 @@ class EmprestimoDAO:
             cursor = self.con.cursor()
             if codigo != None and codigo == str(codigo):
                 data = codigo
-                sql ="SELECT e.codigo, e.tipo, e.dt_emp, e.dt_devolucao, u.nome, u.matricula" \
+                sql ="SELECT e.codigo, e.tipo, e.dt_emp, e.dt_devolucao, u.nome, u.matricula, e.status" \
                      " FROM Emprestimo as e, Usuario as u" \
                      " WHERE e.Usuario_matricula = u.matricula AND" \
                      "      e.dt_emp = %s"
@@ -56,7 +58,7 @@ class EmprestimoDAO:
                 return emprestimos
 
             elif codigo != None:
-                sql ="SELECT e.codigo, e.tipo, e.dt_emp, e.dt_devolucao, u.nome, u.matricula" \
+                sql ="SELECT e.codigo, e.tipo, e.dt_emp, e.dt_devolucao, u.nome, u.matricula, e.status" \
                      " FROM Emprestimo as e, Usuario as u" \
                      " WHERE e.Usuario_matricula = u.matricula AND" \
                      "      e.codigo = %s"
@@ -65,8 +67,9 @@ class EmprestimoDAO:
                 return emprestimo
 
             else:
-                sql = "SELECT * FROM Emprestimo as e, Usuario as u" \
-                          " WHERE e.Usuario_matricula = u.matricula"
+                sql = "SELECT e.codigo, e.tipo, e.dt_emp, e.dt_devolucao, u.nome, u.matricula, e.status" \
+                     " FROM Emprestimo as e, Usuario as u" \
+                     " WHERE e.Usuario_matricula = u.matricula"
                 cursor.execute(sql)
                 emprestimos = cursor.fetchall()
                 return emprestimos
@@ -113,16 +116,40 @@ class EmprestimoDAO:
             return None
 
 
-    def devolver(self, codigo, data):
+    def devolver(self, codigo, status):
+        try:
+            sql = "UPDATE Emprestimo " \
+                  "SET status=%s" \
+                  "WHERE codigo=%s"
+
+            cursor = self.con.cursor()
+            cursor.execute(sql, (status, codigo))
+            self.con.commit()
+            print(cursor.rowcount)
+            return cursor.rowcount
+        except:
+            return 0
+
+
+    def atualizar(self, codigo, data):
         try:
             sql = "UPDATE Emprestimo " \
                   "SET dt_devolucao=%s " \
                   "WHERE codigo=%s"
 
             cursor = self.con.cursor()
+            print("a")
+            print(codigo)
+            print(data)
             cursor.execute(sql, (data, codigo))
+            print("a")
             self.con.commit()
             print(cursor.rowcount)
+            print(cursor)
             return cursor.rowcount
+
         except:
             return 0
+
+
+
