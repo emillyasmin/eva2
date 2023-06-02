@@ -44,7 +44,6 @@ class EmprestimoDAO:
         except:
             return 0
 
-
     def listar(self, codigo=None):
         try:
             cursor = self.con.cursor()
@@ -74,6 +73,44 @@ class EmprestimoDAO:
                 cursor.execute(sql)
                 emprestimos = cursor.fetchall()
                 return emprestimos
+
+        except:
+            return None
+
+    def pesquisar(self, params):
+        try:
+            cursor = self.con.cursor()
+            sql = '''SELECT DISTINCT e.codigo, e.tipo, e.dt_emp, e.dt_devolucao, u.nome, u.matricula
+                    FROM Emprestimo as e, Usuario as u, Item as i, Material as m, emprestimo_has_item as ei
+                    WHERE e.Usuario_matricula=u.matricula AND
+                        e.codigo=ei.Emprestimo_codigo AND
+                        ei.Item_codigo=i.codigo AND
+                        i.Material_codigo=m.codigo'''
+
+            print(params['data'])
+            print(params['nome'])
+            contador = 0
+            if params['data']:
+                sql += " AND dt_emp=%s"
+                contador += 1
+
+            if params['nome']:
+                sql += " AND m.nome LIKE %s"
+                contador += 2
+
+            if contador == 0:
+                cursor.execute(sql)
+            elif contador==1:
+                cursor.execute(sql, (params['data'],))
+            elif contador == 2:
+                liking = f"%{params['nome']}%"
+                cursor.execute(sql, (liking,))
+            elif contador == 3:
+                cursor.execute(sql, (params['data'], params['nome']))
+
+            emprestimos = cursor.fetchall()
+            print("Passou!!!")
+            return emprestimos
 
         except:
             return None
