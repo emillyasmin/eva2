@@ -140,9 +140,16 @@ def cadastrar_material():
 
 @app.route('/listar_material', methods=['GET', 'POST'])
 def listar_material():
- dao = MaterialDAO(get_db())
- materiais_db = dao.listar()
- return render_template("listar_material.html", materiais=materiais_db)
+    dao = MaterialDAO(get_db())
+    try:
+        nome = request.form['nome']
+        if nome is not None:
+            materiais_db = dao.listar(nome)
+    except:
+        materiais_db = dao.listar()
+
+    return render_template("listar_material.html", materiais=materiais_db)
+
 
 
 @app.route('/atualizar_material/<int:codigo>', methods=['GET', 'POST'])
@@ -266,7 +273,12 @@ def atualizar_item(codigo):
 @app.route('/listar_emprestimos', methods=['GET','POST'])
 def listar_emprestimos():
     dao = EmprestimoDAO(get_db())
-    emprestimos_db = dao.listar()
+    try:
+        data = request.form['data']
+        if data is not None:
+            emprestimos_db = dao.listar(data)
+    except:
+        emprestimos_db = dao.listar()
     return render_template("listar_emprestimos.html", emprestimos=emprestimos_db)
 
 
@@ -279,10 +291,11 @@ def cadastrar_emprestimo():
         tipo = request.form['tipo']
         dt_emp = request.form['dt_emp']
         usuario = request.form['usuario']
+        dt_devolucao = request.form['dt_devolucao']
+        status = "emprestado"
 
-        emprestimo = Emprestimo(tipo, dt_emp, usuario)
+        emprestimo = Emprestimo(tipo, dt_emp, usuario, dt_devolucao, status)
 
-        print(Emprestimo(tipo, dt_emp, usuario))
 
         daoEmprestimo = EmprestimoDAO(get_db())
         codigo = daoEmprestimo.inserir(emprestimo)
@@ -337,17 +350,37 @@ def adicionar_item(codigo):
 
 @app.route('/devolver_itens/<int:codigo>', methods=['GET', 'POST'])
 def devolver_itens(codigo):
+    status = "devolvido"
     daoItem = ItemDAO(get_db())
     daoItem.devolver(codigo)
     dao = EmprestimoDAO(get_db())
     data = date.today()
-    print(data)
-    ret = dao.devolver(codigo, data)
+    ret = dao.atualizar(codigo, data)
+    dao.devolver(codigo, status)
     if ret > 0:
         flash("Itens devolvidos! Código %d" % codigo, "success")
     else:
         flash("Erro!", "danger")
     return redirect(url_for('listar_emprestimos'))
+
+@app.route('/renovar_emprestimo/<int:codigo>', methods=['GET', 'POST'])
+def renovar_emprestimo(codigo):
+    print("a")
+    dao = EmprestimoDAO(get_db())
+    print("a")
+    if request.method == "POST":
+        print("a")
+        dt_devolucao = request.form['dt_devolucao']
+        emprestimo = codigo
+        print(dt_devolucao)
+        emprestimo_db = dao.atualizar(emprestimo, dt_devolucao)
+        if emprestimo_db > 0:
+            flash("Empréstimo renovado!", "success")
+        else:
+            flash("Erro!", "danger")
+
+    return render_template("renovar_emprestimo.html", emprestimo=codigo)
+
 
 
 @app.route('/visualizar_emprestimo/<int:codigo>', methods=['GET', 'POST'])
@@ -359,6 +392,8 @@ def visualizar_emprestimo(codigo):
     itens_db = daoItem.listar_itens(codigo)
     print(itens_db)
     return render_template("visualizar_emprestimo.html", emprestimo=emprestimo_db, itens=itens_db)
+
+
 
 
 # Login/logout

@@ -33,6 +33,10 @@
                             <td>Usuario</td>
                             <td>{{ emprestimo[4] }}</td>
                           </tr>
+                           <tr>
+                            <td>Status</td>
+                            <td>{{ emprestimo[6] }}</td>
+                          </tr>
 
                 {% else %}
                      <p>Nenhum item foi encontrado</p>
@@ -88,6 +92,8 @@
                     <li><strong>Data de Devolução</strong> <span>{{ emprestimo[3] }}</span></li>
                     <li><a href="{{ url_for('adicionar_item', codigo=emprestimo[0] ) }}" class="btn-visit align-self-start">Adicionar Item</a></li>
                     <li><a href="{{ url_for('devolver_itens', codigo=emprestimo[0]) }}" class="btn-visit align-self-start">Devolver Itens</a></li>
+                    <li><a href="{{ url_for('renovar_emprestimo', codigo=emprestimo[0]) }}" class="btn-visit align-self-start">Renovar</a></li>
+
 
                   </ul>
               {% else %}
@@ -103,3 +109,5 @@
 
 
 {% endblock conteudo %}
+
+<!--                    <li><a href="{{ url_for('renovar_emprestimo', codigo=emprestimo[0]) }}" class="btn-visit align-self-start">Renovar Empréstimo</a></li>-->

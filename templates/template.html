@@ -55,19 +55,24 @@
         <ul>
           <li><a href="/" class="active">Início</a></li>
           {% if 'logado' in session %}
-          <li class="dropdown"><a href="#"><span>Cadastrar</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li class="dropdown"><a href="#"><span>Material</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="/cadastrar_material">Material</a></li>
-              <li><a href="/cadastrar_item">Itens</a></li>
+              <li><a href="/cadastrar_material">Cadastrar</a></li>
+              <li><a href="/listar_material">Listar</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Listar</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li class="dropdown"><a href="#"><span>Itens</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="/listar_material">Material</a></li>
-              <li><a href="/listar_item">Itens</a></li>
-              <li><a href="/listar_usuario">Usuários</a></li>
+              <li><a href="/cadastrar_item">Cadastrar</a></li>
+              <li><a href="/listar_item">Listar</a></li>
             </ul>
           </li>
+          <li class="dropdown"><a href="#"><span>Usuários</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="/listar_usuario">Listar</a></li>
+            </ul>
+          </li>
+
           <li class="dropdown"><a href="#"><span>Empréstimos</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="/cadastrar_emprestimo">Registrar</a></li>
