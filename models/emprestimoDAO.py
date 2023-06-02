@@ -78,17 +78,16 @@ class EmprestimoDAO:
         try:
             cursor = self.con.cursor()
             sql = '''SELECT DISTINCT e.codigo, e.tipo, e.dt_emp, e.dt_devolucao, u.nome, u.matricula
-                    FROM Emprestimo as e, Usuario as u, Item as i, Material as m, emprestimo_has_item as ei
+                    FROM Emprestimo as e, Usuario as u, Item as i, Material as m 
                     WHERE e.Usuario_matricula=u.matricula AND
-                        e.codigo=ei.Emprestimo_codigo AND
-                        ei.Item_codigo=i.codigo AND
+                        e.codigo=i.Emprestimo_codigo AND
                         i.Material_codigo=m.codigo'''
 
             print(params['data'])
             print(params['nome'])
             contador = 0
             if params['data']:
-                sql += " AND dt_emp=%s"
+                sql += " AND e.dt_emp=%s"
                 contador += 1
 
             if params['nome']:
@@ -106,7 +105,6 @@ class EmprestimoDAO:
                 cursor.execute(sql, (params['data'], params['nome']))
 
             emprestimos = cursor.fetchall()
-            print("Passou!!!")
             return emprestimos
 
         except:
